@@ -1,0 +1,382 @@
+<div class="col-md-12">
+        <div class="card">
+            <div class="card-header" data-background-color="purple">
+    
+                <h4 class="title">Administración de SalonSweet</h4>
+    
+                <p class="category">Aquí herramientras para administrar SalonSweet.</p>
+    
+    
+            </div>
+
+
+
+          
+        <div class="card-content table-responsive" >
+               
+              
+<md-content><md-list class="md-3-line">
+<font size="3"  style="margin-top: 50px;margin-bottom: 50px; margin-left: 20px; margin-right:50px; font-weight: bold;">
+    Administrar Servicios</font>
+<button ng-click="agregarServicio()" class="btn btn-primary btn-md" >Agregar servicios</button>
+<button ng-click="eliminarServiciosTemporales()" class="btn btn-primary btn-md" >Eliminar servicios temporales </button>
+<button ng-click="modificarServicio()" class="btn btn-primary btn-md">Modificar Servicio</button>
+</md-list></md-content>
+<hr>
+<md-content><md-list class="md-3-line"></md-list>
+<font size="3"  style="margin-top: 50px;margin-bottom: 50px; margin-left: 20px; margin-right:50px; font-weight: bold;">
+    Administrar Clientes</font>
+    <button ng-click="modificarCliente()" class="btn btn-primary btn-md" >Modificar Clientes</button>
+</md-list></md-content>
+<md-divider></md-divider>
+                </div>
+            
+        
+            </div>
+            </div>
+            <script type="text/ng-template" id="dialogAgregarServicio">
+
+                <div class="col-md-10 col-lg-offset-1">
+                        <table class="table  table-hover table-responsive "  >
+                                <thead class="text-primary"> 
+                                <th>Agregar Servicio</th></thead></table>
+                        
+                        <center>
+                            <div class="content row"> 
+                                
+                                <div class="col-md-6">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Nombre</label>
+                                            <input required type="text"  ng-model="nombre" class="form-control" >
+                                        </div></div> 
+                                        
+                                        
+                                        <div class="col-md-6">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Descripción</label>
+                                        <input  required type="text"  ng-model="descripcion" class="form-control" >
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Categoría</label>
+                                        <md-select ng-model="categoria">
+                                                <md-option ng-value="categoria" 
+                                                ng-repeat="categoria in categorias" > {{categoria.nombre}}</md-option></md-select>
+                                    </div>
+                                </div>
+                                   <div class="col-md-6">
+                                        <div class="form-group label-floating" >
+                                            <label class="control-label">Precio</label>
+                                            <input required type="number"  ng-model="psDescuento" class="form-control" ng-change="calcularPCD()" min="0">    
+                                        </div>
+                                    </div>  
+                                     <div class="col-md-6">
+                                        <div class="form-group label-floating" >
+                                            <label class="control-label">Descuento %</label>
+                                            <input required type="number"  ng-model="descuento" class="form-control" ng-change="calcularPCD()" min="0" max="100" >    
+                                        </div>
+                                    </div>    
+                                    
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Precio con descuento</label>
+                                            <input required type="number" ng-model="valor" class="form-control" readonly="true" ></input>  
+                                        </div>
+                                    </div>     
+                         
+                              <div class="col-md-6">
+                                        <div class="form-group label-floating">
+                                            <font size="3" class="control-label" style="font-weight: bold;">  
+                                                <input  type="checkbox"  ng-model="check" >Servicio Permanente?</font>
+                                        </div>
+                                    </div>  
+                                
+                                     
+                              
+                            </div>
+                            <spam  class="validacionServicio"> {{mensajeValidacionServicio}} </spam>
+                            <button      ng-click=  "pushServicio(nombre,descripcion,categoria,valor,check,psDescuento)"             class=" btn btn-info">
+                                <i class="material-icons"></i> Agregar Servicio
+                            </button>
+                            <br>
+                        </center>
+
+            </script>
+
+
+
+
+            <script type="text/ng-template" id="dialogModificarServicio">
+           
+                <div class="adm1_marcoAdministrarServicios">
+                <md-input-container>
+                    <label >Nombre Servicio</label>  
+                    <angucomplete-alt id="ex1"
+                    placeholder="Buscar servicios"
+                    pause="100"
+                    selected-object="selected"
+                    local-data="servicios"
+                    search-fields="descripcion"
+                    title-field="descripcion"
+                    minlength="1"
+                    input-class="form-control form-control-small">
+                    </angucomplete-alt>
+                                           <button       ng-click="seleccionarServicio()"              class=" btn btn-info">
+                       
+                                               <i class="material-icons"></i> Editar servicio
+                                   
+                                           </button>
+                       
+                       
+                                      </md-input-container>
+
+
+                                      <div class="listing-form" ng-if="editListing">
+
+                                          
+                               
+                                           
+                                              <div class="col-sm-6">
+                                  
+                                                  <span>Descripción</span>
+                                                  <input 
+                                                      type="text"
+                                                      placeholder="Descripcion del servicio"
+                                                      class="form-control"
+                                                      ng-model="seleServicio.descripcion">
+                                            
+                                              </div>
+                               
+                                              <div class="col-sm-6">
+                                                  <span >Valor</span>
+                                                  <input 
+                                                      required type="number"
+                                                      placeholder="Precio sin puntos ni simbolos"
+                                                      class="form-control"
+                                                      ng-model="seleServicio.valor">
+                                                </div>
+                                            
+                               
+                                              <div class="col-sm-6">
+                                               
+                                                  <span >Categoria</span>
+                                                  <select 
+                                                      type="select"
+                                                      name="propertyType"
+                                                      id="propertyType" 
+                                                      class="form-control" 
+                                                      ng-model="seleServicio.categoria" convert-to-number>
+                                                        <option value="1">Manicure</option>
+                                                        <option value="2">Pedicure</option>
+                                                        <option value="3">Uñas Acrilicas</option>
+                                                        <option value="4">Pestañas & Cejas</option>  
+                                                        <option value="5">Tratamientos Faciales</option>
+                                                        <option value="6">Tratamientos Corporales</option>
+                                                        <option value="7">Depilación</option>
+                                                        <option value="8">Peluquería</option>
+                                                        <option value="9">Microblanding</option>
+                                                        <option value="10">Masaje</option>
+                                                        <option value="11">Ondulación</option>
+                                                        <option value="12">Extensión de pestañas</option>
+                                                        <option value="13">Depilación hindú</option>
+                                                        <option value="14">Gift Card</option>
+                                                  </select>
+                                          
+                                              </div>
+                                       
+                               
+                                   
+                                              <div class="col-sm-6">
+                                             
+                                                  <span>Nombre</span>
+                                                  <input 
+                                                      type="text"
+                                                      placeholder="Nombre del servicio"
+                                                      class="form-control"
+                                                      ng-model="seleServicio.nombre">
+                                                </input>
+                                           
+                                              </div>
+                               
+                                    
+                               
+                                                <div class="col-sm-12">
+                                                
+                                                    <span >Duración</span>
+                                                    <input 
+                                                        type="text"
+                                                        placeholder="Duracion del servicio"
+                                                        class="form-control"
+                                                        ng-model="seleServicio.duracion">
+                                            
+                                                </div>
+                               
+                                     
+                                                <spam  class="validacionModificarServicio"> {{mensajeValidacionModificarServicio}} </spam>
+                                                <div class="col-sm-12">
+                                              <button 
+                                                  
+                                                  class="btn btn-primary listing-button"
+                                                  ng-click="guardarServicio()"	
+                                                  ng-show="editListing">Guardar
+                                              </button>
+                               
+                                              <button 
+                                                  class="btn btn-danger listing-button" 
+                                                  ng-click="eliminarServicio()" 
+                                                  ng-show="editListing">Eliminar
+                                              </button>
+                                            </div>
+                                              </div>
+                               
+                                       
+
+                             </div>
+
+        </script>
+        <script type="text/ng-template" id="dialogModificarCliente">
+
+
+     
+            
+        
+            <div class="adm1_marcoAdministrarCliente"> 
+            <md-input-container>
+                 <!--   <input  type="text" name="id" id="id" list="cliente" class="inp-form" size="15"
+                       required autofocus  md-selected-item="selectedItem" 
+                      ng-model="nombreClienteAutocomplete" placeholder="Clientes"/>
+                          <datalist id="cliente"  ng-model="nombreClienteAutocomplete" > 
+                          <option ng-value="cliente.nombre" ng-repeat="cliente in clientes"   
+                        ng-model="nombreClienteAutocomplete" value="cliente">
+                      {{cliente.numero}} 
+                      {{cliente.mail}}
+                      {{cliente.cumple}}
+                                           </option>
+                                       </datalist>-->
+
+                                       <label >Nombre Cliente</label>  
+                                       <angucomplete-alt id="ex1"
+                                       placeholder="Buscar nombres"
+                                       pause="100"
+                                       selected-object="selected"
+                                       local-data="clientes"
+                                       search-fields="nombre"
+                                       title-field="nombre"
+                                       minlength="1"
+                                       input-class="form-control form-control-small">
+                                       </angucomplete-alt>
+                          
+                       
+                                       <button       ng-click="seleccionarCliente()"              class=" btn btn-info">
+                   
+                                           <i class="material-icons"></i> Asignar 
+                               
+                                       </button>
+                   
+                   
+                                  </md-input-container>
+
+            
+            <div class="listing-form" ng-if="editListingClientes">
+
+                
+       
+                  
+                      <div class="col-sm-6">
+                        <div class="input-group">
+                          <span >Nombre</span>
+                          <input 
+                              type="text"
+                              placeholder="Nombre del cliente"
+                              class="form-control"
+                              ng-model="seleCliente.nombre">
+                       
+                       
+                       
+                            </div>
+                      </div>
+       
+                      <div class="col-sm-6">
+                        <div class="input-group">
+                          <span >Correo</span>
+                          <input 
+                              type="email"
+                              placeholder="Ej: a@b.cl"
+                              class="form-control"
+                              ng-model="seleCliente.mail">
+                        </div>
+                      </div>
+       
+                      <div class="col-sm-6">
+                        <div class="input-group">
+                          <span>Numero</span>
+                          <input 
+                              type="text"
+                              placeholder="Numero del servicio"
+                              class="form-control"
+                              ng-model="seleCliente.numero">
+                        </input>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group label-floating">
+                                <label class="control-label">Cumpleaños DIA</label>
+                        <md-select ng-model="seleCliente.dia">
+                            <md-option ng-value="dias" ng-repeat="dias in Dia" > {{dias}}</md-option></md-select>    </div>
+                        </div>
+                    <div class="col-md-3">
+                        <div class="form-group label-floating">
+                            <label class="control-label">Cumpleaños MES</label>
+                            <md-select ng-model="seleCliente.mes">
+                                <md-option ng-value="meses" ng-repeat="meses in Mes"> {{meses}}</md-option></md-select>
+                        </div>
+                    </div>
+                    
+               
+                      <spam  class="validacionModificarCliente"> {{mensajeValidacionModificarCliente}} </spam>
+                        <div class="col-sm-12">
+                      <button 
+                          
+                          class="btn btn-primary listing-button"
+                          ng-click="guardarCliente()"	
+                          ng-show="editListingClientes">Guardar
+                      </button>
+                   
+                      <button 
+                          class="btn btn-danger listing-button" 
+                          ng-click="eliminarCliente()" 
+                          ng-show="editListingClientes"
+                         >Eliminar
+                      </button>
+                    </div>
+                   
+       
+
+                      
+                 </div>
+
+        
+        
+                </div>
+        
+        
+        </script>
+
+        <script type="text/ng-template" id="dialogautocomplete">
+            
+          
+            <div class="adm1_marcoAdministrarServicios">
+                    <angucomplete-alt id="ex1"
+                    placeholder="Search names"
+                    pause="100"
+                    selected-object="selected"
+                    local-data="clientes"
+                    search-fields="nombre"
+                    title-field="nombre"
+                    minlength="1"
+                    input-class="form-control form-control-small">
+                    </angucomplete-alt>
+                </div>
+             
+            <script>

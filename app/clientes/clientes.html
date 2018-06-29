@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <!-- Site made with Mobirise Website Builder v4.7.2, https://mobirise.com -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <style>
+        table, th , td  {
+          border: 0.5px solid grey;
+          border-collapse: collapse;
+          padding: 5px;
+        }
+        table tr:nth-child(odd) {
+          background-color: #f1f1f1;
+        }
+        table tr:nth-child(even) {
+          background-color: #ffffff;
+        }
+        </style>
+  
+  
+  
+</head>
+<body>
+        <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+            
+                        <h4 class="title">Clientes de SalonSweet</h4>
+            
+                        <p class="category">Aquí herramientras para información de Clientes.</p>
+            
+            
+                    </div>
+        
+  
+
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="title col-12 col-lg-8">
+                <h2 class="mbr-section-title align-center pb-3 mbr-fonts-style display-2">
+                   Clientes
+                </h2>
+                <h3 class="mbr-section-subtitle align-center mbr-light pb-3 mbr-fonts-style display-5">
+                   
+                </h3>
+                
+                          <angucomplete-alt id="ex1"
+                          placeholder="Buscar nombres"
+                          pause="100"
+                          selected-object="selected"
+                          local-data="clientes"
+                          search-fields="nombre"
+                          title-field="nombre"
+                          minlength="1"
+                          input-class="form-control form-control-small">
+                          </angucomplete-alt>
+                          
+                          <button       ng-click="seleccionarCliente()"              class="btn btn-primary btn-form display-4">
+      
+                              <i class="material-icons"></i> Asignar 
+                  
+                          </button>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="media-container-column col-lg-8" data-form-type="formoid">
+                    
+            
+                    <form class="mbr-form">
+                        <div class="row row-sm-offset">
+                            <div class="col-md-4 multi-horizontal" data-for="name">
+                                <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="name-form1-t">Nombre</label>
+                                    <input type="text" class="form-control" name="name" data-form-field="Name" required="" id="name-form1-t"  ng-model="seleCliente.nombre" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-4 multi-horizontal" data-for="email">
+                                <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="email-form1-t">Email</label>
+                                    <input type="email" class="form-control" name="email" data-form-field="Email" required="" id="email-form1-t" ng-model="seleCliente.mail" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-4 multi-horizontal" data-for="phone">
+                                <div class="form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-t">Teléfono</label>
+                                    <input type="tel" class="form-control" name="phone" data-form-field="Phone" id="phone-form1-t" ng-model="seleCliente.numero" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-4 multi-horizontal" data-for="phone">
+                                    <div class="form-group">
+                                        <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-t">Cantidad Servicios</label>
+                                        <input type="tel" class="form-control" name="phone" data-form-field="Phone" id="phone-form1-t" ng-model="seleCliente.totalCantidadServicios" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 multi-horizontal" data-for="phone">
+                                        <div class="form-group">
+                                            <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-t">Total Invertido</label>
+                                            <input type="tel" class="form-control" name="phone" data-form-field="Phone" id="phone-form1-t" ng-model="seleCliente.totalInvertido" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 multi-horizontal" data-for="phone">
+                                            <div class="form-group">
+                                                <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-t">Ultima Atención</label>
+                                                <input type="tel" class="form-control" name="phone" data-form-field="Phone" id="phone-form1-t" ng-model="seleCliente.ultimaAtencion" readonly>
+                                            </div>
+                                        </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label mbr-fonts-style display-7">Notas</label>
+                            <textarea type="text" class="form-control"  rows="7"  ng-model="seleCliente.nota"></textarea>
+                        </div>
+            
+                        <span class="input-group-btn"></span>
+                            <button ng-click="guardarNota()" class="btn btn-primary btn-form display-4" >Modificar Nota</button>
+                        </span>
+                    </form>
+            </div>
+        </div>
+    </div>
+ 
+    <div class="table-responsive" ng-show="seleCliente && seleCliente.servicios != null" >
+            <table class="table-condensed">
+                    <h2 class="mbr-section-title align-center pb-3 mbr-fonts-style display-2">
+                            Servicios del trabajador al cliente
+                         </h2>
+                <tr>
+                    <th>Nº</th>
+                    <th>Descripción</th>
+                   
+                    <th>Categoría</th>
+               
+                    <th>Fecha Servicio</th>
+                    
+                  
+                      <th>Precio</th>
+                 
+                    <th>FormaDePago</th>
+                </tr>
+                    <tr ng-repeat="a in seleCliente.servicios"
+                        ng-if="a.idTrabajadora == user.uid"
+                    >
+                            <td>{{ $index + 1 }}</td>
+                      <td style="font-weight: bold;">{{a.descripcion}}{{a.servicios}}</td>
+                      <td>{{categorias[a.categoria-1].nombre}}</td>
+                      <td>{{a.fechaDia}}</td>
+                      <td>{{numberwithCommas(a.psDescuento)}}</td>
+                    
+                   
+                      <td>{{a.FormaDePago}}</td>
+                    </tr></table></div>
+    <br>
+    
+    <div class="table-responsive" ng-show="seleCliente &&seleCliente.servicios != null">
+            <table class="table-condensed">
+                    <h2 class="mbr-section-title align-center pb-3 mbr-fonts-style display-2">
+                            Servicios totales del cliente
+                         </h2>
+                <tr>
+                    <th>Nº</th>
+                    <th>Descripción</th>
+                   
+                    <th>Categoría</th>
+               
+                    <th>Fecha Servicio</th>
+                    
+                  
+                      <th>Precio</th>
+                 
+                    <th>FormaDePago</th>
+                </tr>
+                    <tr ng-repeat="b in seleCliente.servicios">
+                            <td>{{ $index + 1 }}</td>
+                      <td style="font-weight: bold;">{{b.descripcion}}</td>
+                      <td>{{categorias[b.categoria-1].nombre}}</td>
+                      <td>{{b.fechaDia}}</td>
+                      <td>{{numberwithCommas(b.psDescuento)}}</td>
+                    
+                   
+                      <td>{{b.FormaDePago}}</td>
+                    </tr></table></div>
+    <br>
+ 
