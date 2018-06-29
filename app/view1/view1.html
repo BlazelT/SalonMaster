@@ -1,0 +1,252 @@
+
+
+
+
+<div class="col-md-12">
+
+    <div class="card ">
+        <div class="card-header " data-background-color="purple">
+            <p style="float: right"  class="category">
+                
+               
+               <span><i class="fa fa-shopping-cart fa-2x"></i></span> <span style="font-size: 20px; "> $ {{ numberwithCommas(totalAPagar)}} </span>
+                
+                <br><b>
+                   
+                    <button   ng-click="asignar(products)"   title="Boton para Asignar servicios" style="background-color: red">
+                        Asignar Servicios </button></b>
+                        <button     ng-click="agregarCliente()" style="background-color: black">
+
+                                <i class="material-icons">person_add</i>A Cliente
+                
+                            </button>
+            </p>
+            
+
+
+
+            <p>Filtro por Categoria :
+
+                <md-select ng-model="categoriaSeleccion"
+                            placeholder=" - " >
+                    <md-option
+                            ng-value="''">
+                       TODAS LAS CATEGORIAS
+                    </md-option>
+                    <md-option
+                               ng-repeat="categoria in ListaCategorias"
+                            ng-value="categoria.$id">
+                        {{categoria.nombre}}
+                    </md-option>
+                    <!-- ng-click="filterEventsByText()"  -->
+
+                </md-select>
+                <button ng-show="categoriaSeleccion != ''" ng-click="sacarFiltro()" class="btn btn-sm"> cerrar filtro</button>
+
+
+
+                </p>
+
+
+
+
+
+
+        </div>
+
+
+        <div class="card-content container-fluid">
+           
+            <div class="col-sm-4 " ng-click="sumarDisminuir(product)" ng-show="categoriaSeleccion == product.categoria || categoriaSeleccion == ''"  
+            ng-repeat="product in products" style="  height : 40px;   padding-right: 0px;  padding-left: 0px;"> 
+            <div  ng-show="product.cantidad == 0">
+                <spam style="color: black;" >
+                    <div style="box-shadow: inset 0px 0px 0px 2px white;" ng-show="product.cantidad == 0" class="ng-binding ">
+            
+                    
+    <!-- 
+                            <i
+                               class="text-primary material-icons"
+                               ng-show="product.cantidad == 0"
+                               style="vertical-align: middle;"
+                               
+                               
+                              >add</i>-->
+    
+                            </spam>
+              <!--  {{product.nombre}} :<br /> -->
+                    <spam style="color: black;font-size:  14px;  padding: 3px;">  {{product.descripcion}}</spam>
+                    <spam style="color: rgb(228, 11, 130);font-size: 14px;font-weight: bold; padding: 3px; text-align: right; position: relative;">  $ {{ numberwithCommas(product.valor)}} </spam>
+                </div>
+            </div>
+            <div style="box-shadow: inset 0px 0px 0px 2px black;" ng-show="product.cantidad == 1" class="ng-binding ">
+                    <spam style="color: black;" >
+                       
+                             <!--     <i
+                                   class="text-primary material-icons"
+                                   ng-show="product.cantidad == 1"
+                                   style="vertical-align: middle;"
+                                   >remove</i>-->
+        
+                               
+        
+                                </spam>
+                  <!--  {{product.nombre}} :<br /> -->
+                        <spam style="color: black;font-size: 14px;padding: 3px;">  {{product.descripcion}}</spam>
+                        <spam style="color: rgb(228, 11, 130);font-size: 14px; font-weight: bold; padding: 3px; text-align: right; position: relative;">  $ {{ numberwithCommas(product.valor)}} </spam>
+                
+                </div>
+               
+        </div>
+        <hr>  
+
+        </div>
+    </div>
+
+
+</div>
+
+
+    <script type="text/ng-template" id="dialogComprarServicios"  >
+
+        <div style="margin-top: 50px;margin-bottom: 50px; margin-left: 50px; margin-right:50px;">
+        
+        <table class="table  table-hover table-responsive "  >
+                <thead class="text-primary">
+                <th>Servicio</th>
+                <th>Profesional</th>
+                </thead>
+                <tbody>
+                <tr  ng-repeat="servicio in productosSelecionados" >
+                    <td>{{servicio.descripcion}}</td>
+        
+                    <td>
+        
+                        <md-select  style="margin-top: -10px;margin-bottom: -10px"  ng-model="servicio.idTrabajadora" 
+                                    placeholder=" - " >
+                            <md-option
+                                    ng-repeat="trabajadora in trabajadoras"
+                                    ng-value="trabajadora.$id"
+                                    ng-if="trabajadora.perfil =='trabajadora' &&   trabajadora.servicios[servicio.categoria]>=0"
+                                    >
+                                {{trabajadora.name}} 
+                            </md-option>
+                        </md-select>
+                    </td>
+                </tr>
+        
+                </tbody>
+        
+            </table>
+
+
+            <div>
+
+                    <div class="list-wrapper">
+        
+    <md-input-container>
+        <label >Nombre Cliente</label>  
+        <angucomplete-alt id="ex1"
+        placeholder="Buscar nombres"
+        pause="100"
+        selected-object="selected"
+        local-data="clientes"
+        search-fields="nombre"
+        title-field="nombre"
+        minlength="1"
+        input-class="form-control form-control-small">
+        </angucomplete-alt>
+                    <button       ng-click="seleccionarCliente()"              class=" btn btn-info">
+
+                        <i class="material-icons"></i> Asignar 
+            
+                    </button>
+
+
+               </md-input-container><br>
+             
+                                <b>Nombre cliente:</b>
+            <md-input-container>
+              
+                        
+            
+   {{seleCliente.nombre}}
+      
+    </md-input-container><br>
+    <b>Correo:</b>
+    <md-input-container>
+           {{seleCliente.mail}}
+</md-input-container><br>
+
+<b>Número:</b>
+    <md-input-container>
+            
+{{seleCliente.numero}}
+</md-input-container></p>
+
+
+
+     <spam  class="validacion"> {{mensajeValidacion}} </spam>
+     
+        
+          <button       ng-click="finalizar()"              class=" btn btn-info">
+
+            <i class="material-icons"></i> Asignar Servicios
+
+        </button>
+             
+        </div> 
+			
+    </div>
+</script>
+<script type="text/ng-template" id="dialogAgregarCliente">
+    <div class="col-md-10 col-lg-offset-1">
+            <table class="table  table-hover table-responsive "  >
+                    <thead class="text-primary">
+                    <th>Agregar Cliente</th></thead></table>
+            
+            <center>
+                <div class="content row">
+                    <div class="col-md-6">
+                        <div class="form-group label-floating">
+                            <label class="control-label">Nombre Cliente</label>
+                            <input required type="text"  ng-model="nombre" class="form-control" >
+    
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group label-floating">
+                            <label class="control-label">Telefono</label>
+                            <input  required type="number"  ng-model="numero" class="form-control" >
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group label-floating">
+                            <label class="control-label">Correo</label>
+                            <input required type="email"  ng-model="mail" class="form-control" >
+    
+                        </div>
+                    </div>  
+                    <div class="col-md-3">
+                        <div class="form-group label-floating">
+                                <label class="control-label">Cumpleaños DIA</label>
+                        <md-select ng-model="cumpleDia">
+                            <md-option ng-value="dias" ng-repeat="dias in Dia" > {{dias}}</md-option></md-select>    </div>
+                        </div>
+                    <div class="col-md-3">
+                        <div class="form-group label-floating">
+                            <label class="control-label">Cumpleaños MES</label>
+                            <md-select ng-model="cumpleMes">
+                                <md-option ng-value="meses" ng-repeat="meses in Mes"> {{meses}}</md-option></md-select>
+                        </div>
+                    </div>
+                  
+                </div>
+                <spam  class="validacionCliente"> {{mensajeValidacionCliente}} </spam>
+                <button      ng-click=  "pushCliente(nombre,numero,mail,cumpleDia,cumpleMes)"             class=" btn btn-info">
+                    <i class="material-icons"></i> Agregar Cliente
+                </button>
+                <br>
+            </center>
+
+</script>

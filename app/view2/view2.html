@@ -1,0 +1,117 @@
+
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header " data-background-color="purple">
+
+            <h4 class="title">Lista de Ordenes</h4>
+
+            <p class="category">Aquí visualizas los trabajos que tienes asignados, Cuando termines un servicio marcalo como realizado.</p>
+
+            <p>Filtro por cliente :
+
+                    <md-select  ng-model="username"
+                    
+                    placeholder=" - " >
+            <md-option
+                    ng-value="''">
+               TODOS LOS CLIENTES  
+            </md-option>
+                        <md-option 
+                             ng-repeat="orden in ListaOrdenes | unique: 'nombreCliente'"
+                             ng-value="orden.nombreCliente" ng-if="orden.idTrabajadora == usuarioLogeado.id || usuarioLogeado.perfil == 'administrador' ">
+                           
+                            {{orden.nombreCliente}} 
+                        
+                            </md-option>
+                        <!-- ng-click="filterEventsByText()"  -->
+    
+                    </md-select>
+                    <button ng-show="username != ''" ng-click="sacarFiltro()" class="btn btn-sm"> cerrar filtro</button>
+    
+    
+    
+                    </p>
+        </div>
+        <div class="card-content table-responsive" >
+            
+            <table class="table">
+                <thead class="text-primary">
+
+
+                <th >Cliente y Servicio</th>
+
+
+
+                </thead>
+                <tbody>
+                <tr    ng-show="username==product.nombreCliente || username == ''"  ng-repeat="product in products"  >
+
+
+                    <td  class="text-primary" >Cliente : {{product.nombreCliente}}<br>
+                        Servicio : <span style="color: black;"> {{product.nombre}}</span><br>
+                        Detalle: <span style="color:darkgrey;"> {{product.descripcion}}</span><br>
+                        Responsable:<span style="color:darkgrey;"> {{getNameTrabajadora(product.idTrabajadora)}}</span><br>
+                        Petición:<span style="color:darkgrey;"> {{ product.fecha | date:'h:mma'}}</span> <br />
+                        <span ng-show="product.realizado" style="color:darkgrey;"> Realizado a las  {{ product.fechaRealizado | date:'h:mma'}}</span><br />
+                        <span ng-show="product.pagado" style="color:darkgrey;"> Pagado a las  {{ product.fechaPago | date:'h:mma'}}</span>
+                        
+                   <div class="container">
+                                  <md-switch class="col-xs-3" ng-show="!product.procesofinalizado" ng-model="product.realizado" aria-label="Switch 1"
+                         ng-click="realizar(product)">
+                        </md-switch>
+                      
+                    <button ng-click="eliminarOrden(product)" class="btn btn-primary btn-md" 
+                    ng-if="product.realizado==false" style="background-color:red">Eliminar</button>
+                           
+                                               
+                   </div>
+                                        
+                                        
+                        <span ng-show="product.pagado">Pagado </span>
+                        <span ng-show="product.eliminado">No Realizado </span>
+
+                  <!--  <span style="color:darkgrey;"> {{product}}</span></td> -->
+
+
+                </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="dialogComprarServicios"  >
+
+
+
+    <table class="table">
+        <thead class="text-primary">
+        <th>Servicio</th>
+        <th>Profesional</th>
+        </thead>
+        <tbody>
+        <tr  ng-repeat="servicio in productosSelecionados" >
+            <td>{{servicio.nombre}}</td>
+            <td>
+
+                <md-select  style="margin-top: -10px;margin-bottom: -10px" ng-model="servicio.idTrabajadora"
+                            placeholder=" - ">
+                    <md-option
+                            ng-repeat="trabajadora in trabajadoras"
+                            ng-value="trabajadora.$id">
+                        {{trabajadora.name}}
+                    </md-option>
+                </md-select>
+            </td>
+        </tr>
+
+        </tbody>
+
+    </table>
+
+
+
+
+</script>

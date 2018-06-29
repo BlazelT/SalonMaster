@@ -1,0 +1,41 @@
+<style>
+    table, th , td  {
+      border: 0.5px solid grey;
+      border-collapse: collapse;
+      padding: 5px;
+    }
+    table tr:nth-child(odd) {
+      background-color: #f1f1f1;
+    }
+    table tr:nth-child(even) {
+      background-color: #ffffff;
+    }
+    </style>
+<div layout="row" >
+    <div flex="100">
+        <md-list-item class="secondary-button-padding" ng-click="showPrompt($event)">
+
+            <p style="color:blue">*Click acá para agregar sugerencias* <b>{{status}}</b></p>
+            <i class="material-icons">wb_incandescent</i>
+
+
+        </md-list-item>
+    </div >
+</div>
+<b>Clickear sugerencia en la tabla para eliminar alguna en específico, las sugerencias solo las puede ver el administrador*</b>
+</br></br>
+
+<b class="col-md-3" style="color:red">Usuaria</b>
+<b class="col-md-9" style="color:purple; width: 250px;
+word-wrap: break-word;">Mensaje</b>
+<br><br>
+<div class="col-md-12"  ng-repeat="a in sugerencias" ng-click="modificar(a)"
+ ng-show="a.id == usuario.$id || usuario.perfil == 'administrador'" style="border-bottom: 1px solid #398AA4;">           
+                        
+                            
+        <b class="col-md-3" style="color:black">{{a.nombre}}</b>
+        <b class="col-md-9" style="color:black;color:black; width: 250px;
+        word-wrap: break-word;">{{a.mensaje}}</b>
+        
+       
+    </div>                          

@@ -1,0 +1,37 @@
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header" data-background-color="purple">
+
+            <h4 class="title">Dashboard SalónSweet</h4>
+
+            <p class="category">Aquí estan los dashboard que muestran los detalles de los servicios realizados y ventas</p>
+
+
+        </div>
+
+
+
+      
+    <div class="card-content " >
+          
+<md-content ng-if="a.perfil != 'administrador'"><md-list class="md-3-line" >
+<font size="3"  style="margin-top: 50px;margin-bottom: 50px; margin-left: 20px; margin-right:50px; font-weight: bold;">
+Dashboard Trabajadora</font>
+<a href="#!/dashboard/trabajadora" class="btn btn-primary btn-md" >Resumen Día</a><!--
+<a ng-click="eliminarServiciosTemporales()" class="btn btn-primary btn-md" >Resumen Semana</a>
+<a ng-click="modificarServicio()" class="btn btn-primary btn-md">Resumen por fechas</a>-->
+</md-list></md-content>
+
+<md-content ng-if="a.perfil=='administrador'"><md-list class="md-3-line"></md-list>
+<font size="3"  style="margin-top: 50px;margin-bottom: 50px; margin-left: 20px; margin-right:50px; font-weight: bold;">
+Dashboard Administrador</font>
+<a href="#!/dashboard/administrador" class="btn btn-primary btn-md" >Resumen Día</a>
+</md-list></md-content>
+<md-divider></md-divider>
+            </div>
+        
+    
+        </div>
+        </div>
+
+      

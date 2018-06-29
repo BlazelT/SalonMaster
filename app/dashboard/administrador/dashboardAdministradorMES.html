@@ -1,0 +1,197 @@
+ <!--
+    <div layout="row" >
+        <a href="#!/dashboard/servicios" >
+
+        <img src="img/dashboard/noun_108591_cc.png" width="90%" height="90%" />
+        </a>
+        <a href="#!/dashboard/servicios" >
+
+        <img src="img/dashboard/noun_1161004_cc.png" width="90%" height="90%" />
+    </a>
+        <a ng-click="showPrompt($event)" >
+
+        <img src="img/dashboard/noun_840872_cc.png" width="80%" height="80%" />
+    </a>
+        <a href="#!/dashboard/servicios">
+
+        <img src="img/dashboard/noun_1086094_cc.png"  width="90%" height="90%" />
+    </a>
+ </div>-->
+    <!--{{categorias["1"].porcentajes["RNn4fJ6II1PJf9hoRyl0OOIX4CP2"].porcentaje}}
+    <div layout="row" >-->
+        <style>
+            table, th , td  {
+              border: 0.5px solid grey;
+              border-collapse: collapse;
+              padding: 5px;
+            }
+            table tr:nth-child(odd) {
+              background-color: #f1f1f1;
+            }
+            table tr:nth-child(even) {
+              background-color: #ffffff;
+            }
+            </style>
+
+<div class="table-responsive">
+    <table class="table-condensed">
+        <tr>
+           
+            <th>Resumen día en Efectivo</th>
+           
+            <th>Resumen día en T.Credito</th>
+       
+            <th>Resumen día en T.Debito</th>
+            
+            <th>Resumen día en Gift Card</th>
+            <th>Resumen día en Descuento</th>
+           
+        </tr>
+            <tr></tr>
+                   
+              <td style="font-weight: bold;">{{numberwithCommas(resumenDia.totalEfectivo)}}</td>
+            
+              <td>{{numberwithCommas(resumenDia.totalCredito)}}</td>
+             
+              <td>{{numberwithCommas(resumenDia.totalDebito)}}</td>
+            
+              <td>{{numberwithCommas(resumenDia.totalGiftCard)}}</td>
+              <td>{{numberwithCommas(resumenDia.totalDescuento)}}</td>
+         
+           
+            </tr></table></div>
+        <div class="card-content table-responsive" >
+            <md-list-item class="secondary-button-padding" ng-click="doPrimaryAction($event)">
+    
+                    <div >
+    
+                    </div>
+                   
+                    <div >
+                        <h3 class="col-md-6">RESUMEN DEL DÍA EN GANANCIAS CON SUELDO BASE</h3>
+                            <br>
+    
+                        <h3 class="col-md-12">Total - ${{numberwithCommas(totalGananciaDia)}}</h3>
+                        <h3 class="col-md-12">-10% - ${{numberwithCommas(totalGananciaDia *0.90)}}</h3>
+                    </div>
+                    <div >
+    
+                    </div>
+    
+            </md-list-item>
+                </div >
+        </div>
+        <div layout="row" >
+            <div flex="50" style="border: solid ; ">
+                <a href="#!/dashboard/servicios" class="dropdown-toggle" data-toggle="dropdown">
+    
+                <md-list-item class="secondary-button-padding" >
+                    <h1></h1>
+                    <p>Servicios</p>
+                    <p>{{resumenDia.serviciosRealizados}}</p>
+                    <i class="material-icons">keyboard_arrow_right</i>
+                </md-list-item>
+                </a>
+            </div>
+            <div flex="50" style="border: solid ; ">
+    
+                    <md-list-item class="secondary-button-padding" ng-click="doPrimaryAction($event)">
+    
+                        <p>Clientes</p>
+                        <p>{{resumenDia.clientesAtendidos}}</p>
+                        <i class="material-icons">keyboard_arrow_right</i>
+                    </md-list-item>
+    
+    
+    
+    
+            </div>
+    
+        </div>
+        <div layout="row" >
+            <div flex="100">
+                <md-list-item class="secondary-button-padding" ng-click="showPrompt($event)">
+    
+                    <p>Sugerencias <b>{{status}}</b></p>
+                    <i class="material-icons">wb_incandescent</i>
+    
+    
+                </md-list-item>
+            </div >
+        </div>
+       
+              <div class="table-responsive">
+        <table class="table-condensed">
+            <tr>
+                <th>Nº</th>
+                <th>Descripción</th>
+               
+                <th>FechaOrden</th>
+           
+                <th>Realizado</th>
+                
+                <th>NombreCliente</th>
+                
+                  <th>Precio</th>
+                  
+                <th>Trabajadora</th>
+                <th>FormaDePago</th>
+            </tr>
+                <tr ng-repeat="a in servRealizados">
+                        <td>{{ $index + 1 }}</td>
+                  <td style="font-weight: bold;">{{a.descripcion}}</td>
+                
+                  <td>{{a.fecha | date:'h:mma'}}</td>
+                 
+                  <td>{{a.fechaRealizado | date:'h:mma'}}</td>
+                
+                  <td>{{a.nombreCliente}}</td>
+                 
+                  <td>{{numberwithCommas(a.valor)}}</td>
+                  <td>{{a.nombreTrabajadora}}</td>
+                  <td>{{a.FormaDePago}}</td>
+                </tr></table></div>
+<br>
+                <h3>Vendedoras Día</h3>
+    <br>
+                <table class="table-condensed">
+                        <tr>
+                     
+                            <th>Nombre</th>
+                           
+                            <th>TotalDía</th>
+                       
+                            <th>Sueldo</th>
+                            
+                            <th>Falta</th>
+                          
+                        </tr>
+                            <tr ng-repeat="gananciaTrabajadora in trabajadoras" ng-if="gananciaTrabajadora.total>0">
+                               
+                              <td style="font-weight: bold;">{{gananciaTrabajadora.name}} </td>
+                            
+                              <td>{{numberwithCommas(gananciaTrabajadora.total)}} </td>
+                             
+                              <td>{{numberwithCommas(gananciaTrabajadora.sueldoBase)}}</td>
+                            
+                              <td>{{numberwithCommas(gananciaTrabajadora.perdida)}}</td>
+                            
+                            </tr></table></div>
+            <br>
+            <br>
+            
+                            <table class="table-condensed" ng-repeat="d in clientes" ng-show="d.debe==true">
+                                    
+                                <tr>
+                                    <td>Cliente deudor de transferencia</td>
+                                    <td>Teléfono</td>
+                                    <td>Correo</td>
+                                    <td>Clickear al cliente cuando pague transferencia</td>
+                                </tr>
+                                <tr ng-if="d.debe == true">
+                                   <td>{{d.nombre}}</td>
+                                   <td>{{d.numero}}</td>
+                                   <td>{{d.mail}}</td>
+                                   <td ng-click="modificar(d)">{{d.debe}}</td>
+                                </tr>
+           

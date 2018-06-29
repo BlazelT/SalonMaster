@@ -1,0 +1,230 @@
+
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header" data-background-color="purple">
+            <p style="float: right"  class="category">
+                &nbsp;&nbsp;
+                <button ng-if="usuarioLogeado.perfil == 'administrador' "  ng-click="cerrarDia()" class="btn btn-danger"  title="Cerrar Dia" >
+
+                    Cerrar Día de Trabajo </button>
+            </p>
+
+            <h4 class="title">Lista de Ventas del Día </h4>
+
+            <p class="category">Aquí visualizas las ventas realizadas en el día.</p>
+
+          
+    <!--
+                    <md-list-item class="secondary-button-padding" >
+    
+                    <div flex="40">
+                        <i class="material-icons">credit_card</i> 
+                        Credito : {{numberwithCommas(resumenDia.totalDebito)}}
+                        Debito :  {{numberwithCommas(resumenDia.totalCredito)}}
+
+                      </div>
+                      <div flex="40">
+                        <i class="material-icons">attach_money</i> 
+                        Efectivo : {{numberwithCommas(resumenDia.totalEfectivo)}}
+                        Tarjeta :  {{numberwithCommas(resumenDia.totalTransbank)}}
+                      </div>
+                      <div flex="20">
+                             
+                             Total Día :  {{numberwithCommas(resumenDia.totalDia)}}
+                      </div>
+                    </md-list-item>-->
+              
+            <p>
+                
+                
+
+
+
+            </p>
+
+        </div>
+        <div class="card-content table-responsive">
+
+            <md-content>
+                <md-list>
+                    <md-list-item class="md-3-line" ng-repeat="product in products">
+                        <div class="md-list-item-text">
+                            <h3>
+                                {{product.nombre}}
+                            </h3>
+                            <h4>
+
+                                <span ng-show="product.totalAPagar != 0" style="color: black;">  Pago :${{numberwithCommas(product.totalAPagar)}}- {{product.FormaDePago}}</span>
+
+
+
+                            </h4>
+                            <!-- <p>{{item.notes}}</p> -->
+                            <p>
+                                <!--Ordenes que han sido Realizadas -->
+                                <span style="color: #55b559;" ng-repeat="or in product.ordenesRealizadas">
+                                    {{TrabajadoraName(or.idTrabajadora)}}-- {{or.nombre}} -- {{ or.fechaRealizado | date:'h:mma'}} <br />
+
+                        </span>
+
+
+
+
+                            </p>
+                        </div>
+                        <md-button ng-click="pagarOrdenes(product)" class="md-icon-button" aria-label="More">
+
+                            <i   class="material-icons" data-notify="Ver Boletas ">visibility</i>
+
+
+
+
+                        </md-button>
+
+                        <md-divider ng-if="!$last"></md-divider>
+                    </md-list-item>
+                </md-list>
+            </md-content>
+
+
+
+
+            <script type="text/ng-template" id="dialogPagarServicio"  >
+
+
+
+
+
+                <div class="col-md-10 col-lg-offset-1">
+                    <center>
+                        <div class="content row">
+                            <div class="col-md-6">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Nombre Cliente</label>
+                                    <input required type="text" ng-model="modalNombreboleta" class="form-control" readonly="true" >
+
+
+                                </div>
+
+
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Total a Pagar </label>
+                                    <input required type="text" ng-model="modalTotalAPagar" class="form-control" readonly="true" >
+
+                                </div>
+
+
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Monto Entregado por Cliente</label>
+                                    <input required type="text" ng-model="montoIngresado" ng-change="calcularVuelto()" readonly="true" class="form-control" >
+
+                                </div>
+                                <div class="form-group label-floating">
+                                    <label class="control-label"> Vuelto a Cliente </label>
+                                    <input required type="text" ng-model="modalVuelto" class="form-control" readonly="true" >
+
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Forma de Pago </label>
+                                    <input required type="text" ng-model="formaDePago " class="form-control" readonly="true" >
+
+
+                                </div>
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Teléfono</label>
+                                    <input required type="text" ng-model="numero" class="form-control" readonly="true" >
+
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Cobro Pago </label>
+                                    <input required type="text" ng-model="nombreTrabajadora " class="form-control" readonly="true" >
+
+
+                                </div>
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Correo</label>
+                                    <input required type="text" ng-model="mail" class="form-control" readonly="true" >
+
+
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">fecha Inicio Orden </label>
+
+
+                                    <span>{{ fechaInicioOrden | date:'dd/MM/yyyy @ h:mma'}}</span><br />
+
+
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Fecha Pago </label>
+
+
+                                    <span>{{ fechaPago | date:'dd/MM/yyyy @ h:mma'}}</span>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <table class="table">
+                            <thead class="text-primary">
+                            <th>Servicios Realizados</th>
+
+
+                            </thead>
+                            <tbody>
+                            <tr  ng-repeat="ordenes in modalServiciosRelizados" >
+                                <td>{{ordenes.descripcion}} | $ {{ordenes.valor | number:0 }}</td>
+
+                                <!-- Ejemplo para crear un combobox con informacion de otro nodo ->
+                                <!--
+                                                        <td>
+
+                                                            <md-select  style="margin-top: -10px;margin-bottom: -10px" ng-model="ordenes.idTrabajadora"
+                                                                        placeholder=" - ">
+                                                                <md-option
+                                                                        ng-repeat="trabajadora in trabajadoras"
+                                                                        ng-value="trabajadora.$id">
+                                                                    {{trabajadora.name}}
+                                                                </md-option>
+                                                            </md-select>
+                                                        </td>
+                                                        -->
+                            </tr>
+
+                            </tbody>
+
+                        </table>
+
+                        <br>
+                    </center>
+                </div>
+
+
+
+
+
+
+            </script>
+
+
+
+        </div>
+    </div>
+</div>
+
