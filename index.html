@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Salon Sweet 1.0</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <script  src="app/assets/js/angucomplete-alt.js"></script>
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+   
+    <!-- CSS Files -->
+    <link href="app/assets/csslogin/bootstrap.min.css" rel="stylesheet" />
+    <link href="app/assets/csslogin/material-kit.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="app/assets/css/angucomplete-alt.css" />
+</head>
+<body class="signup-page">
+
+
+<nav class="navbar navbar-transparent navbar-absolute">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+        </div>
+
+        <div class="collapse navbar-collapse" id="navigation-example">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- <li>
+                      <a href="../components-documentation.html" target="_blank">
+                          Components
+                      </a>
+                  </li>
+                  <li>
+                      <a href="http://demos.creative-tim.com/material-kit-pro/presentation.html?ref=utp-freebie" target="_blank">
+                          <i class="material-icons">unarchive</i> Upgrade to PRO
+                      </a>
+                  </li> -->
+                <li>
+                    <a href="https://image.freepik.com/iconos-gratis/dedo-de-una-mano-apuntando-a-la-direccion-correcta_318-42144.jpg" target="_blank" class="btn btn-simple btn-white btn-just-icon">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/CreativeTim" target="_blank" class="btn btn-simple btn-white btn-just-icon">
+                        <i class="fa fa-facebook-square"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.instagram.com/CreativeTimOfficial" target="_blank" class="btn btn-simple btn-white btn-just-icon">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="wrapper">
+    <div class="header header-filter" style="background-image: url('http://salonsweet.cl/wp-content/themes/salonsweet2017/assets/img/slide/bg-slider-2.jpg'); background-size: cover; background-position: top center;">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+                    <div class="card card-signup">
+
+                            <div class="header header-primary text-center">
+                                <h4>Saloon Sweet </h4>
+                                <div class="social-line">
+                                    <!--  <a href="#pablo" class="btn btn-simple btn-just-icon">
+                                         <i class="fa fa-facebook-square"></i>
+                                     </a>
+                                    <a href="#pablo" class="btn btn-simple btn-just-icon">
+                                         <i class="fa fa-twitter"></i>
+                                     </a>
+                                    <a  class="btn btn-simple btn-just-icon">
+                                        <i class="fa fa-google-plus"></i>
+                                    </a>-->
+                                </div>
+                            </div>
+
+                            <div class="content" style="background-color: transparent;">
+
+                           <!--     <div class="input-group">
+										<span class="input-group-addon">
+											<i class="material-icons">face</i>
+										</span>
+                                    <input type="text" class="form-control" placeholder="First Name...">
+                                </div>
+ -->
+                                <div class="input-group">
+										<span class="input-group-addon">
+											<i class="material-icons">email</i>
+										</span>
+    <input id="correo" type="text" class="form-control" placeholder="Email..." onkeypress="return entraAlToque(event)" >
+                                </div>
+
+                                <div class="input-group">
+										<span class="input-group-addon">
+											<i class="material-icons">lock_outline</i>
+										</span>
+                                    <input id="password" type="password" placeholder="Password..." class="form-control" onkeypress="return entraAlToque(event)"/>
+                                </div>
+
+                                <!-- If you want to add a checkbox to this form, uncomment this code
+
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="optionsCheckboxes" checked>
+                                        Subscribe to newsletter
+                                    </label>
+                                </div> -->
+                            </div>
+                            <div class="footer text-center">
+                                <a id="google" class="btn btn-simple btn-primary btn-lg" >Ingresar</a>
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <nav class="pull-left">
+                    <ul>
+                        <li>
+                            <a href="http://www.creative-tim.com">
+
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://presentation.creative-tim.com">
+
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://blog.creative-tim.com">
+
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.creative-tim.com/license">
+
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="copyright pull-right">
+                    &copy; 2017, Creada con  <i class="fa fa-heart heart"></i> por <a href="http://www.manosya.cl" target="_blank">Manos Ya</a>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+</body>
+
+
+
+
+
+
+<script src="login.js"></script>
+<script src="app/components/js/jquery-3.1.1.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyAEuWcpnCL2ctm5lc0Wu-7ho1TaORoxMJQ",
+        authDomain: "devs-c9cdc.firebaseapp.com",
+        databaseURL: "https://devs-c9cdc.firebaseio.com",
+        projectId: "devs-c9cdc",
+        storageBucket: "devs-c9cdc.appspot.com",
+        messagingSenderId: "477801868148"
+    };
+    firebase.initializeApp(config);
+</script>
+<!--
+<script src="app/assets/js/jquery.relevant-dropdown.js"></script>
+<script src="app/assets/js/load-fallbacks.js"></script>
+<script src="app/assets/js/modernizr.custom.95508.js"></script>
+<script  src="app/assets/js/datalist-polyfill.min.js"></script>-->
+
+
+<!--   Core JS Files   -->
+<script src="app/assets/jslogin/jquery.min.js" type="text/javascript"></script>
+<script src="app/assets/jslogin/bootstrap.min.js" type="text/javascript"></script>
+<script src="app/assets/jslogin/material.min.js"></script>
+
+<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script src="app/assets/jslogin/nouislider.min.js" type="text/javascript"></script>
+
+<!--  Plugin for the Datepicker, full documentation here: http://www.eyecon.ro/bootstrap-datepicker/ -->
+<script src="app/assets/jslogin/bootstrap-datepicker.js" type="text/javascript"></script>
+
+<!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
+<script src="app/assets/jslogin/material-kit.js" type="text/javascript"></script>
+
+</html>
