@@ -12,21 +12,26 @@
 
 
       
-    <div class="card-content " >
+    <div class="card-content table-responsive" >
           
-<md-content ng-if="a.perfil != 'administrador'"><md-list class="md-3-line" >
+<md-content ng-show="a.perfil == 'trabajadora'"><md-list class="md-3-line" >
 <font size="3"  style="margin-top: 50px;margin-bottom: 50px; margin-left: 20px; margin-right:50px; font-weight: bold;">
 Dashboard Trabajadora</font>
-<a href="#!/dashboard/trabajadora" class="btn btn-primary btn-md" >Resumen Día</a><!--
+<a href="#!/dashboard/trabajadoraDIA" class="btn btn-primary btn-md" >Resumen Día</a>
+<a href="#!/dashboard/a" class="btn btn-primary btn-md" >Resumen Mes</a><!--
 <a ng-click="eliminarServiciosTemporales()" class="btn btn-primary btn-md" >Resumen Semana</a>
 <a ng-click="modificarServicio()" class="btn btn-primary btn-md">Resumen por fechas</a>-->
 </md-list></md-content>
 
-<md-content ng-if="a.perfil=='administrador'"><md-list class="md-3-line"></md-list>
+<md-content ng-show="a.perfil=='administrador'"><md-list class="md-3-line"></md-list>
 <font size="3"  style="margin-top: 50px;margin-bottom: 50px; margin-left: 20px; margin-right:50px; font-weight: bold;">
 Dashboard Administrador</font>
-<a href="#!/dashboard/administrador" class="btn btn-primary btn-md" >Resumen Día</a>
+<a href="#!/dashboard/administradorDIA" class="btn btn-primary btn-md" >Resumen Día</a>
+<a href="#!/dashboard/administradorMES" class="btn btn-primary btn-md" >Resumen Mes</a>
 </md-list></md-content>
+
+
+
 <md-divider></md-divider>
             </div>
         

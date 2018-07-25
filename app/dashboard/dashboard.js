@@ -5,9 +5,11 @@
 
 angular.module('myApp.dashboard', [
     'ngRoute',
-    'myApp.servicios',
     'myApp.dashboard.dashboardTrabajadoraDIA',
-    'myApp.dashboard.dashboardAdministradorDIA'
+    'myApp.dashboard.dashboardAdministradorDIA',
+    'myApp.dashboard.dashboardAdministradorMES',
+   
+
 ])
 
     .config(['$routeProvider', function($routeProvider) {

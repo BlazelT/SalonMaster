@@ -6,7 +6,7 @@
 angular.module('myApp.dashboard.dashboardTrabajadoraDIA', ['ngRoute','myApp.servicios'])
 
     .config(['$routeProvider', function($routeProvider) {
-        $routeProvider.when('/dashboard/trabajadora', {
+        $routeProvider.when('/dashboard/trabajadoraDIA', {
             templateUrl: 'dashboard/trabajadora/dashboardTrabajadoraDIA.html',
             controller: 'dashboardTrabajadoraDIACtrl'
         });

@@ -77,6 +77,23 @@ angular.module('myApp.dashboard.dashboardAdministradorMES', ['ngRoute'])
                 $scope.categorias = buscarCategoriasER;
             });
 
+            var buscarBoletas = firebase.database().ref().child('boletaCreada');
+            var buscarBoletasER = $firebaseArray(buscarBoletas);
+            buscarBoletasER.$loaded().then(function () {
+                $scope.boletas = buscarBoletasER;
+
+                $scope.boletas.forEach(function(y){
+                  
+                    var aal = firebase.database().ref().child('jornadas/' +y.diaBoleta+ '/ordenes');
+
+
+
+
+
+                })
+            });
+
+
             var buscarBoletaCreada = firebase.database().ref().child('jornadas');
 
             var buscarBoletaCreadaER = $firebaseArray(buscarBoletaCreada);
@@ -84,6 +101,7 @@ angular.module('myApp.dashboard.dashboardAdministradorMES', ['ngRoute'])
             buscarBoletaCreadaER.$loaded().then(function () {
                 $scope.alljornadas = buscarBoletaCreadaER;
                  console.log($scope.alljornadas);
+
                 $scope.alljornadas.forEach(function (x) {
                     var a = firebase.database().ref().child('jornadas/' +x.$id+ '/ordenes');
                     var ja = $firebaseArray(a);
@@ -93,6 +111,9 @@ angular.module('myApp.dashboard.dashboardAdministradorMES', ['ngRoute'])
       
         ja.forEach(function (p) {
           
+
+
+
             if(p.realizado == true){
 
                   
@@ -175,5 +196,33 @@ angular.module('myApp.dashboard.dashboardAdministradorMES', ['ngRoute'])
                 }
                 
             });
+            function obtenerFechaHoy() {
+                var dia =new Date().getDate();
+                var mes = new Date().getMonth() + 1; // por alguna razón trae el mes anterior
+                var ano = new Date().getFullYear();
 
+                var diafinal;
+                var mesfinal;
+                if(mes < 10)
+                {
+                    mesfinal = '0' + mes ;
+                }else
+                {
+                    mesfinal = mes;
+
+                }
+
+                if(dia < 10)
+                {
+                    diafinal = '0' + dia ;
+                }else
+                {
+                    diafinal = dia;
+
+                }
+
+                console.log('esto es un intento de fecha =' + diafinal + mesfinal + ano);
+
+                return diafinal + mesfinal + ano;
+            }
         }]);

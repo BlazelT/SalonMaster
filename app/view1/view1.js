@@ -15,26 +15,6 @@ angular.module('myApp.view1', ['ngRoute'])
         var user = window.currentAppSalon ;
         var usuarioLogeado = "";
      
-        var ref = firebase.database().ref('/trabajadoras/').child(user.$id || user.uid);
-        var usersLocal = $firebaseObject(ref);
-        usersLocal.$loaded().then(function () {
-          // se asigna la informacion de usuario de la bd a la variable.
-
-          usuarioLogeado = usersLocal;
-          console.log(usuarioLogeado);
-
-          $(saludo).text( "Hola , "+ usuarioLogeado.name );
-
-          $(logoAvatar).html( "  <center> <img src='"+ usuarioLogeado.foto + "' height='150' width='150' />  <div id='saludo' ></center> </div>  ");
-         
- 
- // aqui se modifica el saludo
-          $(saludo).text( "Hola , "+ usuarioLogeado.name );
-
-
-        });
-     
-
         $(servicios).addClass( "active" );
         $(ordenes).removeClass( "active" );
         $(cobros).removeClass( "active" );
@@ -42,8 +22,6 @@ angular.module('myApp.view1', ['ngRoute'])
         $(administrar).removeClass( "active" );
         $(dashboard).removeClass( "active" );
         $(clientes).removeClass( "active" );
-
-
         
         function obtenerFechaHoy() {
             var dia =new Date().getDate();
@@ -370,7 +348,7 @@ return $scope.b;
                 {       
                 
                
-                    $scope.fechaPago = new Date().getDate()+ '' + (new Date().getMonth() + 1) + '' + new Date().getFullYear() ;
+                    $scope.fechaPago = obtenerFechaHoy();
     
                     if($scope.seleCliente.nombre != ""){
     

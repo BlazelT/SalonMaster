@@ -1,12 +1,12 @@
 /**
- * Created by M on 25-09-2017.
+ * Created by M & Raúl Sandoval  2018
  */
 'use strict';
 
-angular.module('myApp.dashboard.dashboardAdministradorDIA', ['ngRoute', 'myApp.servicios'])
+angular.module('myApp.dashboard.dashboardAdministradorDIA', ['ngRoute'])
 
     .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/dashboard/administrador', {
+        $routeProvider.when('/dashboard/administradorDIA', {
             templateUrl: 'dashboard/administrador/dashboardAdministradorDIA.html',
             controller: 'dashboardAdministradorDIACtrl'
         });

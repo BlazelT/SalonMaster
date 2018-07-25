@@ -68,11 +68,11 @@
                     </div>
                    
                     <div >
-                        <h4 class="col-md-12">RESUMEN DEL DÍA EN GANANCIAS CON SUELDO BASE</h4>
+                        <h3 class="col-md-6">RESUMEN DEL DÍA EN GANANCIAS CON SUELDO BASE</h3>
                             <br>
     
-                        <h4 class="col-md-12">Total - ${{numberwithCommas(totalGananciaDia)}}</h4>
-                        <h4 class="col-md-12">-10% - ${{numberwithCommas(totalGananciaDia *0.90)}}</h4>
+                        <h3 class="col-md-12">Total - ${{numberwithCommas(totalGananciaDia)}}</h3>
+                        <h3 class="col-md-12">-10% - ${{numberwithCommas(totalGananciaDia *0.90)}}</h3>
                     </div>
                     <div >
     
@@ -120,9 +120,8 @@
             </div >
         </div>
        
-      <div class="table-responsive">
-      
-          <table class="table-condensed">
+              <div class="table-responsive">
+        <table class="table-condensed">
             <tr>
                 <th>Nº</th>
                 <th>Descripción</th>
@@ -152,16 +151,6 @@
                   <td>{{a.nombreTrabajadora}}</td>
                   <td>{{a.FormaDePago}}</td>
                 </tr></table></div>
-
-
-
-
-
-
-
-
-
-                
 <br>
                 <h3>Vendedoras Día</h3>
     <br>
@@ -191,7 +180,7 @@
             <br>
             <br>
             
-                            <table class="table-condensed"   >
+                            <table class="table-condensed" ng-repeat="d in clientes" ng-show="d.debe==true">
                                     
                                 <tr>
                                     <td>Cliente deudor de transferencia</td>
@@ -199,10 +188,10 @@
                                     <td>Correo</td>
                                     <td>Clickear al cliente cuando pague transferencia</td>
                                 </tr>
-                                <tr  ng-repeat="d in clientes" ng-show="d.debe==true" ng-click="modificar(d)" ng-if="d.debe == true">
+                                <tr ng-if="d.debe == true">
                                    <td>{{d.nombre}}</td>
                                    <td>{{d.numero}}</td>
                                    <td>{{d.mail}}</td>
-                                   <td >confirmar pago</td>
+                                   <td ng-click="modificar(d)">{{d.debe}}</td>
                                 </tr>
            
