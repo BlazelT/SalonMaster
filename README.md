@@ -1,3 +1,8 @@
-# SalonMaster
+# README #
 
-SalonMaster es la base de la aplicación de administración que estamos desarrollando en conjunto.
+Este proyecto flaite! comienza now!
+
+
+# Falta completar #
+
+Dashboard Trabajadores

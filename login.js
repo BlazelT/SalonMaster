@@ -1,18 +1,10 @@
 /**
  * Created by andro on 13-06-2017.
  */
+var ingresarVendedora= document.getElementById('google');
 
-function entraAlToque(e) {
-    //See notes about 'which' and 'key'
-    if (e.keyCode == 13) {
-        
-        
-        entrar();
-    }
-}
+ingresarVendedora.addEventListener('click', function() {
 
-function entrar()
-{
     var email = document.getElementById('correo').value;
     var password = document.getElementById('password').value;
 
@@ -25,7 +17,12 @@ function entrar()
     {
         email = 'salonsweet@manosya.cl';
         password = '123456';
-    }   
+    }
+    if(email.toLowerCase()  == 'geraldine')
+    {
+        email = 'geraldine@salonsweet.com';
+        password = '123456aa';
+    }	
 	
     if(email.toLowerCase()  == 'kathy')
     {
@@ -100,11 +97,4 @@ function entrar()
             document.getElementById('signIn').style.display = 'block';
         }
     );
-
-}
-var ingresarVendedora= document.getElementById('google');
-
-ingresarVendedora.addEventListener('click', function() {
-
-    entrar();
 });
