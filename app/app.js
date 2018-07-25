@@ -14,7 +14,7 @@ angular.module('myApp', [
   'angular.filter',
     'myApp.ingresos',
     'myApp.dashboard',
-	   'myApp.sugerencias',
+    'myApp.sugerencias',
     'log',
     "angucomplete-alt"
   
@@ -45,15 +45,8 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
 
   if (validateUser()) {
     $routeProvider.otherwise({redirectTo: '/view1'});
-
     console.log(window.currentAppSalon);
-
-  
-
     
-
-  
-
   } else {
     window.currentAppSalon = "";
     console.log(window.currentAppSalon);

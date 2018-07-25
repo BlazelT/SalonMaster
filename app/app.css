@@ -70,9 +70,3 @@
 height: 25px;
 width: 25px;
 }
-
-.main-panel > .content {
-  margin-top: 0px;
-  padding: 0px 15px;
-  min-height: calc(100% - 123px);
-}
